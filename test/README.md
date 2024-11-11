@@ -18,7 +18,7 @@ make
 
 cd /ts2wasm/
 
-node build/cli/ts2wasm.js --opt=3 test/fib.ts -o test/fib.wasm
+node build/cli/ts2wasm.js --opt=3 test/fib.ts --wat -o test/fib.wasm
 
 time ./runtime-library/build/iwasm_gc test/fib.wasm
 
@@ -33,5 +33,7 @@ make
 export PATH=$(pwd):$PATH
 
 cd /ts2wasm/tests/benchmark
+
+sudo apt install bc
 
 ./run.sh
