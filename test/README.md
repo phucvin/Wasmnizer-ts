@@ -95,3 +95,11 @@ $ node run_benchmark.js
 │   20    │        'spectral_norm_i32'         │   '9604.32ms'    │ '26836.61ms' │ '686.78ms' │        '0.36'        │        '13.98'        │
 └─────────┴────────────────────────────────────┴──────────────────┴──────────────┴────────────┴──────────────────────┴───────────────────────┘
 ```
+
+cd /ts2wasm/runtime-library/deps/wamr-gc/wamr-compiler
+
+sudo apt install python3-pip
+
+note: modify /ts2wasm/runtime-library/deps/wamr-gc/build-scripts/requirements.txt to have an available version (e.g. 2.31.0)
+
+TODO
