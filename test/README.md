@@ -18,13 +18,21 @@ make
 
 cd /ts2wasm/
 
-node build/cli/ts2wasm.js --opt=3 test/fib.ts --wat -o test/fib.wasm
+node build/cli/ts2wasm.js --opt=3 test/fib01.ts --wat -o test/fib01.wasm
 
-time ./runtime-library/build/iwasm_gc test/fib.wasm
+time ./runtime-library/build/iwasm_gc test/fib01.wasm
 
 fib(40)  = 102334155
 
 real    0m9.473s
+
+node build/cli/ts2wasm.js --opt=3 test/fib02.ts --wat -o test/fib02.wasm
+
+time ./runtime-library/build/iwasm_gc test/fib02.wasm
+
+fib(40)  = 102334155
+
+real    0m10.637s
 
 cd runtime-library/deps/quickjs
 
