@@ -45,3 +45,7 @@ cd /ts2wasm/tests/benchmark
 sudo apt install bc
 
 ./run.sh
+
+node run_benchmark.js
+
+node run_benchmark.js --benchmark fib --warmup 3 --times 3 --runtimes wamr-interp

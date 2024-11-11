@@ -207,7 +207,7 @@ for (let benchmark of benchmarks) {
 
     console.log(`Compiling ${prefix} benchmark:`);
     execSync(`node ${ts2wasm_script} ${filename} --opt ${optimize_level} --output ${prefix}.wasm > tmp.txt`);
-    execSync(`${wamrc} --enable-gc -o ${prefix}.aot ${prefix}.wasm > tmp.txt`);
+    // execSync(`${wamrc} --enable-gc -o ${prefix}.aot ${prefix}.wasm > tmp.txt`);
 
     if (specified_runtimes && !specified_runtimes.includes('wamr-interp')) {
         console.log(`\x1b[33mSkip WAMR interpreter due to argument filter.\x1b[0m`);
@@ -223,10 +223,12 @@ for (let benchmark of benchmarks) {
         console.log(`\x1b[33mSkip WAMR AoT due to argument filter.\x1b[0m`);
     }
     else {
-        process.stdout.write(`WAMR AoT ... \t\t`);
+        process.stdout.write(`[Skipped] WAMR AoT ... \t\t`);
+        /*
         elapsed = run_multiple_times(`${iwasm_gc} ${collect_benchmark_options(benchmark_options[prefix]?.wamr_option)} -f main ${prefix}.aot`);
         wamr_aot_times.push(elapsed);
         console.log(`${elapsed.toFixed(2)}ms`);
+        */
     }
 
     if (specified_runtimes && !specified_runtimes.includes('qjs')) {

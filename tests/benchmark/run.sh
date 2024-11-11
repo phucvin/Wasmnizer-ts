@@ -29,7 +29,7 @@ fi
 
 ts_times=()
 js_times=()
-aot_times=()
+# aot_times=()
 prefixs=()
 
 tmp_total_second=0
@@ -61,11 +61,11 @@ for benchmark in $benchmarks; do
             process_time_info
             ts_times+=($tmp_total_second)
 
-            echo "Run $prefix benchmark by WAMR aot:"
-            $wamrc --enable-gc -o $prefix.aot $prefix.wasm > tmp.txt
-            { time $iwasm_gc --gc-heap-size=52428800 -f main $prefix.aot; } 2> time_output.txt
-            process_time_info
-            aot_times+=($tmp_total_second)
+            echo "[Skipped] Run $prefix benchmark by WAMR aot:"
+            # $wamrc --enable-gc -o $prefix.aot $prefix.wasm > tmp.txt
+            # { time $iwasm_gc --gc-heap-size=52428800 -f main $prefix.aot; } 2> time_output.txt
+            # process_time_info
+            # aot_times+=($tmp_total_second)
 
         elif [ "$extension" = "js" ]; then
             echo "Run $prefix benchmark by qjs:"
@@ -84,12 +84,12 @@ rm -rf *.aot
 for ((i = 0; i < ${#ts_times[@]}; i++)); do
     ts_time=${ts_times[$i]}
     js_time=${js_times[$i]}
-    aot_time=${aot_times[$i]}
+    # aot_time=${aot_times[$i]}
     ratio=$(bc -l <<< "scale=2; $ts_time / $js_time")
     formatted_result=$(printf "%.2f" "$ratio")
     echo "Time ratio for ${prefixs[$i]} benchmark (WAMR_interpreter/qjs): $formatted_result"
-    ratio_aot=$(bc -l <<< "scale=2; $aot_time / $js_time")
-    formatted_result_aot=$(printf "%.2f" "$ratio_aot")
-    echo "Time ratio for ${prefixs[$i]} benchmark (WAMR_aot/qjs): $formatted_result_aot"
+    # ratio_aot=$(bc -l <<< "scale=2; $aot_time / $js_time")
+    # formatted_result_aot=$(printf "%.2f" "$ratio_aot")
+    echo "[Skipped] Time ratio for ${prefixs[$i]} benchmark (WAMR_aot/qjs): $formatted_result_aot"
     echo ""
 done
