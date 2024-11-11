@@ -38,9 +38,9 @@ node build/cli/ts2wasm.js --opt=3 test/fib03.ts --wat -o test/fib03.wasm
 
 time ./runtime-library/build/iwasm_gc test/fib03.wasm
 
-fib(40)  = 102334155
+fib(10)  = 55
 
-real    0m?
+real    0m7.124s
 
 cd runtime-library/deps/quickjs
 

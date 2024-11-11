@@ -1,4 +1,4 @@
-export function fib(n) {
+export function fib(n: any): any {
     if (n < 2) {
         return n;
     } else {
@@ -7,5 +7,5 @@ export function fib(n) {
 }
 
 export function main() {
-    console.log(`fib(40)  = ${fib(40)}`);
+    console.log(`fib(10)  = ${fib(10)}`);
 }
