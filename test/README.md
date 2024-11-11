@@ -98,7 +98,7 @@ $ node run_benchmark.js
 
 cd /ts2wasm/runtime-library/deps/wamr-gc/wamr-compiler
 
-sudo apt install python3-pip
+sudo apt install python3-pip ninja-build
 
 note: modify /ts2wasm/runtime-library/deps/wamr-gc/build-scripts/requirements.txt to have an available version (e.g. 2.31.0)
 
