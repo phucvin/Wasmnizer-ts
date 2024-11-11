@@ -34,6 +34,14 @@ fib(40)  = 102334155
 
 real    0m10.637s
 
+node build/cli/ts2wasm.js --opt=3 test/fib03.ts --wat -o test/fib03.wasm
+
+time ./runtime-library/build/iwasm_gc test/fib03.wasm
+
+fib(40)  = 102334155
+
+real    0m?
+
 cd runtime-library/deps/quickjs
 
 make
@@ -46,8 +54,20 @@ sudo apt install bc
 
 ./run.sh
 
+This runs with fib(40):
 ```
-node run_benchmark.js
+$ node run_benchmark.js --benchmarks=fibonacci --warmup=3 --times=3 --runtimes=wamr-interp,node,qjs
+┌─────────┬─────────────┬──────────────────┬──────────────┬─────────────┬──────────────────────┬───────────────────────┐
+│ (index) │  benchmark  │ WAMR_interpreter │   QuickJS    │    Node     │ WAMR_interpreter/qjs │ WAMR_interpreter/node │
+├─────────┼─────────────┼──────────────────┼──────────────┼─────────────┼──────────────────────┼───────────────────────┤
+│    0    │ 'fibonacci' │   '9986.39ms'    │ '17390.35ms' │ '1289.58ms' │        '0.57'        │        '7.74'         │
+└─────────┴─────────────┴──────────────────┴──────────────┴─────────────┴──────────────────────┴───────────────────────┘
+```
+
+This runs with fib(35):
+
+```
+$ node run_benchmark.js
 ====================== results ======================
 ┌─────────┬────────────────────────────────────┬──────────────────┬──────────────┬────────────┬──────────────────────┬───────────────────────┐
 │ (index) │             benchmark              │ WAMR_interpreter │   QuickJS    │    Node    │ WAMR_interpreter/qjs │ WAMR_interpreter/node │
@@ -75,5 +95,3 @@ node run_benchmark.js
 │   20    │        'spectral_norm_i32'         │   '9604.32ms'    │ '26836.61ms' │ '686.78ms' │        '0.36'        │        '13.98'        │
 └─────────┴────────────────────────────────────┴──────────────────┴──────────────┴────────────┴──────────────────────┴───────────────────────┘
 ```
-
-node run_benchmark.js --benchmark fib --warmup 3 --times 3 --runtimes wamr-interp

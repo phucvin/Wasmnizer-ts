@@ -13,7 +13,7 @@ function fibonacci(num) {
     }
 }
 function main() {
-    fibonacci(35);
+    fibonacci(40);
 }
 
 main()

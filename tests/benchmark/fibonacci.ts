@@ -12,5 +12,5 @@ function fibonacci(num: number): number {
 }
 
 export function main() {
-    fibonacci(35);
+    fibonacci(40);
 }
