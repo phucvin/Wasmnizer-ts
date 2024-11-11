@@ -4,13 +4,11 @@ npm install
 
 npm run build
 
-cd build
-
-cd ../runtime-library/deps/
+cd /ts2wasm/runtime-library/deps/
 
 ./download.sh
 
-cd ..
+cd /ts2wasm/runtime-library/
 
 mkdir build && cd build
 
